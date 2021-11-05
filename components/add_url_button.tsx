@@ -19,14 +19,14 @@ import { Formik, Form, Field } from "formik";
 import { AddIcon } from "@chakra-ui/icons";
 import { useRef, useState } from "react";
 import { isValidUrl } from "../lib/utils";
+import { fetchOpenGraph } from "../lib/open_graph";
 const AddUrlButton = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = useRef<HTMLDivElement>(null);
-  const [urlInput, setUrlInput] = useState("");
 
   ///
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUrlInput(e.target.value);
+  const onSubmitUrl = async (url: string) => {
+    const og = await fetchOpenGraph(url);
   };
 
   const validateUrl = (url: string) => {
@@ -47,11 +47,9 @@ const AddUrlButton = () => {
           <ModalBody>
             <Formik
               initialValues={{ url: "" }}
-              onSubmit={(values, actions) => {
-                setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
-                  actions.setSubmitting(false);
-                }, 1000);
+              onSubmit={async (values, actions) => {
+                await onSubmitUrl(values.url);
+                actions.setSubmitting(false);
               }}
             >
               {(props) => (
