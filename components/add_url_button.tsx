@@ -13,6 +13,7 @@ import {
   ButtonGroup,
   FormControl,
   Spacer,
+  useToast,
   useDisclosure,
 } from "@chakra-ui/react";
 import { Formik, Form, Field } from "formik";
@@ -20,13 +21,39 @@ import { AddIcon } from "@chakra-ui/icons";
 import { useRef, useState } from "react";
 import { isValidUrl } from "../lib/utils";
 const AddUrlButton = () => {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = useRef<HTMLDivElement>(null);
   const [urlInput, setUrlInput] = useState("");
 
   ///
+<<<<<<< Updated upstream
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUrlInput(e.target.value);
+=======
+  const onSubmitUrl = async (url: string) => {
+    const og = await fetchOpenGraph(url);
+    if (!og) {
+      showErrorToast();
+      return;
+    }
+    showSuccessToast();
+  };
+
+  const showSuccessToast = (): void => {
+    toast({
+      title: "Bookmark added successfully",
+      status: "success",
+      isClosable: true,
+    });
+  };
+  const showErrorToast = (): void => {
+    toast({
+      title: "Could not add bookmark, please try again later",
+      status: "error",
+      isClosable: true,
+    });
+>>>>>>> Stashed changes
   };
 
   const validateUrl = (url: string) => {
