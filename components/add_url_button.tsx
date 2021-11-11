@@ -20,6 +20,7 @@ import { Formik, Form, Field } from "formik";
 import { AddIcon } from "@chakra-ui/icons";
 import { useRef, useState } from "react";
 import { isValidUrl } from "../lib/utils";
+import { fetchOpenGraph } from "../lib/open_graph";
 const AddUrlButton = () => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -27,10 +28,6 @@ const AddUrlButton = () => {
   const [urlInput, setUrlInput] = useState("");
 
   ///
-<<<<<<< Updated upstream
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUrlInput(e.target.value);
-=======
   const onSubmitUrl = async (url: string) => {
     const og = await fetchOpenGraph(url);
     if (!og) {
@@ -53,7 +50,6 @@ const AddUrlButton = () => {
       status: "error",
       isClosable: true,
     });
->>>>>>> Stashed changes
   };
 
   const validateUrl = (url: string) => {
@@ -74,11 +70,8 @@ const AddUrlButton = () => {
           <ModalBody>
             <Formik
               initialValues={{ url: "" }}
-              onSubmit={(values, actions) => {
-                setTimeout(() => {
-                  alert(JSON.stringify(values, null, 2));
-                  actions.setSubmitting(false);
-                }, 1000);
+              onSubmit={async (values, actions) => {
+                await fetchOpenGraph(values.url);
               }}
             >
               {(props) => (

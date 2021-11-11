@@ -1,10 +1,3 @@
-<<<<<<< Updated upstream
-import og from "open-graph-scraper";
-export const fetchOpenGraph = async (url: string) => {
-  const response = await og({ url: url });
-  console.log(response);
-  return response.result;
-=======
 import { OpenGraph } from "./types";
 
 // import og from "open-graph-scraper";
@@ -51,5 +44,4 @@ export const parseOpenGraph = (data: string, url: string): OpenGraph => {
   };
   console.log(ogMap);
   return ogMap;
->>>>>>> Stashed changes
 };
