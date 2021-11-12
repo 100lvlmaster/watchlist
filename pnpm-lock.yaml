@@ -15,6 +15,7 @@ specifiers:
   next: 11.1.2
   react: 17.0.2
   react-dom: 17.0.2
+  redux: ^4.1.2
   typescript: 4.4.4
 
 dependencies:
@@ -29,6 +30,7 @@ dependencies:
   next: 11.1.2_8e3522129ef2816b3c737f17aecb3a9d
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
+  redux: 4.1.2
 
 devDependencies:
   '@types/react': 17.0.30
@@ -3773,6 +3775,12 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: 2.3.0
+    dev: false
+
+  /redux/4.1.2:
+    resolution: {integrity: sha512-SH8PglcebESbd/shgf6mii6EIoRM0zrQyjcuQ+ojmfxjTtE0z9Y8pa62iA/OJ58qjP6j27uyW4kUF4jl/jd6sw==}
+    dependencies:
+      '@babel/runtime': 7.16.0
     dev: false
 
   /regenerator-runtime/0.13.9:

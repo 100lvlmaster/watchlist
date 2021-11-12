@@ -13,6 +13,7 @@ import {
   ButtonGroup,
   FormControl,
   Spacer,
+  useToast,
   useDisclosure,
 } from "@chakra-ui/react";
 import { Formik, Form, Field } from "formik";
@@ -21,6 +22,7 @@ import { useRef, useState } from "react";
 import { isValidUrl } from "../lib/utils";
 import { fetchOpenGraph } from "../lib/open_graph";
 const AddUrlButton = () => {
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = useRef<HTMLDivElement>(null);
 
