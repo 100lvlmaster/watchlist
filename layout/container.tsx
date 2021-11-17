@@ -31,7 +31,7 @@ const Container: NextPage = ({ children }) => {
         </NextLink>
         <Spacer display={{ base: "none", sm: "none", md: "flex" }} />
         <Input placeholder="Search" w="2xl" />
-        <AddUrlButton />
+        <AddUrlButton></AddUrlButton>
         <Spacer />
         <IconButton
           onClick={onChangeHandler}

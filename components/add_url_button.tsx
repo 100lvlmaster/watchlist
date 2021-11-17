@@ -25,31 +25,10 @@ const AddUrlButton = () => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const finalRef = useRef<HTMLDivElement>(null);
-  const [urlInput, setUrlInput] = useState("");
 
   ///
   const onSubmitUrl = async (url: string) => {
     const og = await fetchOpenGraph(url);
-    if (!og) {
-      showErrorToast();
-      return;
-    }
-    showSuccessToast();
-  };
-
-  const showSuccessToast = (): void => {
-    toast({
-      title: "Bookmark added successfully",
-      status: "success",
-      isClosable: true,
-    });
-  };
-  const showErrorToast = (): void => {
-    toast({
-      title: "Could not add bookmark, please try again later",
-      status: "error",
-      isClosable: true,
-    });
   };
 
   const validateUrl = (url: string) => {
@@ -71,7 +50,8 @@ const AddUrlButton = () => {
             <Formik
               initialValues={{ url: "" }}
               onSubmit={async (values, actions) => {
-                await fetchOpenGraph(values.url);
+                await onSubmitUrl(values.url);
+                actions.setSubmitting(false);
               }}
             >
               {(props) => (
